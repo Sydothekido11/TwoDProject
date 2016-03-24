@@ -1,21 +1,60 @@
 package twod.view;
 
-public class TwoDPanel 
+import java.awt.Color;
+
+import javax.swing.JTable;
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
+import javax.swing.table.DefaultTableModel;
+
+import twod.controller.KpopController;
+
+public class TwoDPanel extends JPanel
 {
-	private JTable kpopTable;
+	private KpopController baseController;
+	private JTable stringTable;
+	private SpringLayout baseLayout;
+	
+	String[] kpopNames = {"BTS", "BIGBANG", "Topp Dogg", "SHINee" };
+	Object[][] data = {{"BTS"}, {"BIGBANG"}, {"Topp Dogg"}, {"SHINee"}};
+	
+	public TwoDPanel(KpopController baseController)
+	{
+		stringTable = new JTable();
+		
+		this.baseController = baseController;
+		baseLayout = new SpringLayout();
+		
+		setupPanel();
+		setupTable();
+		setupLayout();
+		setupListeners();
+	}
 	
 	private void setupPanel()
 	{
-		this.add(kpopTable);
+		this.setBackground(Color.CYAN);
+		
+		this.add(stringTable);
+		
 	}
 	
 	private void setupTable()
 	{
-		String [] columnHeaders = {"column 0", "Column 1", "Column 2"};
-		DefaultTableModel tableModel = new DefaultTableModel(baseController.getMyKpop(), columnHeaders);
-		kpopTable = new JTable(tableModel);
-		DefaultTableModel kpopTableModel = new DefaultTableModel(baseController.getMyKpop() columnHeaders);
-		kpopTable = new JTable(kpopTableModel);
+		DefaultTableModel myTableModel = new DefaultTableModel(data, kpopNames);
+		stringTable.setModel(myTableModel);
+	}
+	
+	private void setupLayout()
+	{
 		
 	}
+	
+	private void setupListeners()
+	{
+		
+	}
+
+
+	
 }
